@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(36, 36, 36, 0.8) 100%
+  );
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline;
+  padding: 1rem;
+  margin: 0 1rem;
+  font-size: 1rem;
+  color: rgb(250, 170, 7, 0.8);
+}
+
+li:hover {
+  background-color: #555;
+  color: antiquewhite;
+}
+
+h2 {
+  color: rgb(250, 170, 7, 0.8);
+  margin-left: 1em;
+}
