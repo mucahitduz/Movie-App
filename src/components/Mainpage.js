@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useMovie } from "../context/MovieContext";
 import "./Mainpage.css";
 

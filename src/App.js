@@ -1,5 +1,4 @@
 import Mainpage from "./components/Mainpage";
-import MovieDetail from "./components/MovieDetail";
 import Navbar from "./components/Navbar";
 import { MovieProvider } from "./context/MovieContext";
 
