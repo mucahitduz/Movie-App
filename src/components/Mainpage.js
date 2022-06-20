@@ -5,7 +5,7 @@ import "./Mainpage.css";
 const API_IMG = "https://image.tmdb.org/t/p/w200";
 
 const Mainpage = () => {
-  const { movies, handleSearch, handlePage } = useMovie();
+  const { movies, handleSearch, handleMainPage, handlePage } = useMovie();
 
   console.log(movies);
 
@@ -22,8 +22,10 @@ const Mainpage = () => {
           <button
             className="page-btn"
             onClick={() => {
-              if (movies.page > 1) {
+              if (!handleSearch && movies.page > 1) {
                 handlePage(movies.page - 1);
+              } else {
+                handleMainPage(movies.page - 1);
               }
             }}
           >
@@ -32,8 +34,10 @@ const Mainpage = () => {
           <button
             className="page-btn"
             onClick={() => {
-              if (movies.page < movies.total_pages) {
+              if (!handleSearch && movies.page < movies.total_pages) {
                 handlePage(movies.page + 1);
+              } else {
+                handleMainPage(movies.page + 1);
               }
             }}
           >

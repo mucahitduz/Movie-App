@@ -20,6 +20,12 @@ export const MovieProvider = ({ children }) => {
     ).then((res) => setMovies(res.data));
   };
 
+  const handleMainPage = (page) => {
+    axios(
+      `https://api.themoviedb.org/3/movie/popular?api_key=150e7e88fdcd09961d5d4ec6144d3f79&language=en-US&page=${page}`
+    ).then((res) => setMovies(res.data));
+  };
+
   useEffect(() => {
     axios(`${process.env.REACT_APP_API_URL}`).then((res) =>
       setMovies(res.data)
@@ -33,6 +39,7 @@ export const MovieProvider = ({ children }) => {
     setSearch,
     handleSearch,
     handlePage,
+    handleMainPage,
   };
 
   return (

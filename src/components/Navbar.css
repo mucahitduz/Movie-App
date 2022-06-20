@@ -30,3 +30,7 @@ h2 {
   color: rgb(250, 170, 7, 0.8);
   margin-left: 1em;
 }
+
+a {
+  text-decoration: none;
+}
