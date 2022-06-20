@@ -1,40 +1,27 @@
-import { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { useMovie } from "../context/MovieContext";
 import "./Mainpage.css";
 
 const API_IMG = "https://image.tmdb.org/t/p/w200";
 
-const Mainpage = () => {
-  const { movies, setMovies, handleSearch, handleMainPage, handlePage } =
-    useMovie();
-
-  console.log(movies);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_API_URL}`).then((res) =>
-      setMovies(res.data)
-    );
-  }, []);
-
+const Search = () => {
+  const { movies, search, handlePage, handleSearch } = useMovie();
   return (
     <div className="content">
-      <h2>Trending</h2>
-      {movies.page ? (
+      <h2>Search...</h2>
+      <input placeholder="Search" id="search-input" onChange={handleSearch} />
+      {search && movies.page ? (
         <div>
           <p id="pages">
             Page {movies.page} of {movies.total_pages}
           </p>
-
+          <p id="pages">{movies.total_results} results</p>
           <button
             className="page-btn"
             onClick={() => {
-              if (!handleSearch && movies.page > 1) {
+              if (movies.page > 1) {
                 handlePage(movies.page - 1);
-              } else {
-                handleMainPage(movies.page - 1);
               }
-              window.scrollTo(0, 0);
             }}
           >
             Previous Page
@@ -42,22 +29,19 @@ const Mainpage = () => {
           <button
             className="page-btn"
             onClick={() => {
-              if (!handleSearch && movies.page < movies.total_pages) {
+              if (movies.page < movies.total_pages) {
                 handlePage(movies.page + 1);
-              } else {
-                handleMainPage(movies.page + 1);
               }
-              window.scrollTo(0, 0);
             }}
           >
             Next Page
           </button>
         </div>
       ) : (
-        <p id="pages">No data</p>
+        <p id="pages"></p>
       )}
       <div className="movie-list">
-        {movies.results
+        {search && movies.results
           ? movies.results.map((movie) => {
               return (
                 <div className="movie-item" key={movie.id}>
@@ -86,4 +70,4 @@ const Mainpage = () => {
   );
 };
 
-export default Mainpage;
+export default Search;

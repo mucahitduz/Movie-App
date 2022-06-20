@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 
 const MovieContext = createContext();
 
@@ -25,12 +25,6 @@ export const MovieProvider = ({ children }) => {
       `https://api.themoviedb.org/3/movie/popular?api_key=150e7e88fdcd09961d5d4ec6144d3f79&language=en-US&page=${page}`
     ).then((res) => setMovies(res.data));
   };
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_API_URL}`).then((res) =>
-      setMovies(res.data)
-    );
-  }, []);
 
   const values = {
     movies,
