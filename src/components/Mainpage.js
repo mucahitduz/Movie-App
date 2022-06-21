@@ -15,7 +15,7 @@ const Mainpage = () => {
     axios(`${process.env.REACT_APP_API_URL}`).then((res) =>
       setMovies(res.data)
     );
-  }, []);
+  }, [setMovies]);
 
   return (
     <div className="content">
