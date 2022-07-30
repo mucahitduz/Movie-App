@@ -5,13 +5,57 @@ import "./Mainpage.css";
 const API_IMG = "https://image.tmdb.org/t/p/w200";
 
 const Search = () => {
-  const { movies, search, handlePage, handleSearch } = useMovie();
+  const {
+    movies,
+    search,
+    handlePage,
+    handleSearch,
+    addToWatchLater,
+    addToWatched,
+  } = useMovie();
   return (
     <div className="content">
       <h2>Search...</h2>
       <input placeholder="Search" id="search-input" onChange={handleSearch} />
+
+      <div className="movie-list">
+        {search && movies.results
+          ? movies.results.map((movie) => {
+              return (
+                <div className="movie-item" key={movie.id}>
+                  <h2 className="movie-title">{movie.title}</h2>
+                  {movie.poster_path ? (
+                    <img
+                      className="movie-poster"
+                      src={API_IMG + movie.poster_path}
+                      alt=""
+                    />
+                  ) : (
+                    <div className="no-image">
+                      <p>Poster unavailable</p>
+                    </div>
+                  )}
+                  <div className="movie-buttons">
+                    <button
+                      className="movie-btn"
+                      onClick={() => addToWatchLater(movie)}
+                    >
+                      Watch Later
+                    </button>
+                    <button
+                      className="movie-btn"
+                      onClick={() => addToWatched(movie)}
+                    >
+                      Watched
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          : null}
+      </div>
       {search && movies.page ? (
-        <div>
+        <div className="footer">
           <p id="pages">
             Page {movies.page} of {movies.total_pages}
           </p>
@@ -40,32 +84,6 @@ const Search = () => {
       ) : (
         <p id="pages"></p>
       )}
-      <div className="movie-list">
-        {search && movies.results
-          ? movies.results.map((movie) => {
-              return (
-                <div className="movie-item" key={movie.id}>
-                  <h2 className="movie-title">{movie.title}</h2>
-                  {movie.poster_path ? (
-                    <img
-                      className="movie-poster"
-                      src={API_IMG + movie.poster_path}
-                      alt=""
-                    />
-                  ) : (
-                    <div className="no-image">
-                      <p>Poster unavailable</p>
-                    </div>
-                  )}
-                  <div className="movie-buttons">
-                    <button className="movie-btn">Watch Later</button>
-                    <button className="movie-btn">Watched</button>
-                  </div>
-                </div>
-              );
-            })
-          : null}
-      </div>
     </div>
   );
 };

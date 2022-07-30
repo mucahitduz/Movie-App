@@ -28,9 +28,9 @@ html {
   justify-content: space-between;
   align-items: center;
   width: 300px;
-  height: 450px;
+  max-height: 100%;
   margin: 60px 50px;
-  background: rgba(17, 16, 16, 0.774);
+  background: rgba(17, 16, 16, 0.356);
 }
 
 .movie-title {
@@ -100,4 +100,30 @@ html {
   background: rgb(250, 170, 7, 0.8);
   color: whitesmoke;
   transition: 0.2s ease;
+}
+
+.movie-btn:hover {
+  background: rgba(165, 113, 9, 0.8);
+}
+
+.footer {
+  margin-bottom: 50px;
+}
+
+.watchlater-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#watch-list {
+  text-align: center;
+}
+
+.watched-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
 }

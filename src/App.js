@@ -5,6 +5,7 @@ import { MovieProvider } from "./context/MovieContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Watched from "./components/Watched";
 import Search from "./components/Search";
+import Detail from "./components/Detail";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/watchlater" element={<Watchlater />} />
             <Route path="/watched" element={<Watched />} />
+            <Route path="/details/:id" element={<Detail />} />
           </Routes>
         </BrowserRouter>
       </MovieProvider>
