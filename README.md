@@ -1,1 +1,1 @@
-**Live Demo** : [Movies-App](https://md-movies-app.netlify.com)
+**Live Demo** : [Movies-App](https://md-movie.netlify.app)
