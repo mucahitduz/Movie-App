@@ -75,27 +75,37 @@ const Detail = () => {
                   10
                 </h3>
               </div>
+              <div className="detail__buttons">
+                <div
+                  className="detail__button"
+                  onClick={() => {
+                    addToWatchLater(selectedMovieDetails);
+                  }}
+                >
+                  <img
+                    className="icon"
+                    src={require("../../assets/watch.svg").default}
+                    alt="Watch Later"
+                  />
+                  <h4>Watch Later</h4>
+                </div>
+                <div
+                  className="detail__button"
+                  onClick={() => {
+                    addToWatched(selectedMovieDetails);
+                    removeFromWatchLater(selectedMovieDetails);
+                  }}
+                >
+                  <img
+                    className="icon"
+                    src={require("../../assets/watched-icon.svg").default}
+                    alt="Watch Later"
+                  />
+                  <h4>Watched</h4>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="detail__buttons">
-          <button
-            className="movie__btn movie__btn--left"
-            onClick={() => {
-              addToWatchLater(selectedMovieDetails);
-            }}
-          >
-            Watch Later
-          </button>
-          <button
-            className="movie__btn"
-            onClick={() => {
-              addToWatched(selectedMovieDetails);
-              removeFromWatchLater(selectedMovieDetails);
-            }}
-          >
-            Watched
-          </button>
         </div>
         <div className="cast">
           <h2>Cast</h2>

@@ -77,11 +77,42 @@ img {
   color: #3B3B3B;
 }
 
-.detail__buttons {
-  margin: 2rem 0;
-  display: flex;
-  justify-content: center;
+.detail__buttons {  
+  // display: flex;
+  margin: 1.5rem 0;
+
+  .detail__button {
+    display: flex;
+  }
+
+    .detail__button {
+      display: flex;
+      cursor: pointer;
+      margin-top: .7rem;
+  
+      h4 {
+        align-self: center;
+        margin-left: .4rem;
+      }
+  
+      &:hover {
+        scale: 1.01;
+        color: gray;
+      }
+  
+      @media(max-width:400px) {
+        h4 {
+          font-size: .9rem;
+        }
+      }
+    }
 }
+
+// .detail__buttons {
+//   margin: 2rem 0;
+//   display: flex;
+//   justify-content: center;
+// }
 
 .loader {
   border: 5px solid #f3f3f3;

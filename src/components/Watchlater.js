@@ -94,7 +94,7 @@ const Watchlater = () => {
                       }}
                     >
                       <img
-                        className="watchlater"
+                        className="icon"
                         src={require("../assets/remove-button.svg").default}
                         alt="Watch Later"
                       />
@@ -108,7 +108,7 @@ const Watchlater = () => {
                       }}
                     >
                       <img
-                        className="watchlater"
+                        className="icon"
                         src={require("../assets/watched-icon.svg").default}
                         alt="Watch Later"
                       />

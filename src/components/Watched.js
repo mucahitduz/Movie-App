@@ -90,7 +90,7 @@ const Watched = () => {
                       }}
                     >
                       <img
-                        className="watchlater"
+                        className="icon"
                         src={require("../assets/remove-button.svg").default}
                         alt="Watch Later"
                       />

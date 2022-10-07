@@ -97,7 +97,7 @@ const Search = () => {
                       }}
                     >
                       <img
-                        className="watchlater"
+                        className="icon"
                         src={require("../assets/watch-later.svg").default}
                         alt="Watch Later"
                       />
