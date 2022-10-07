@@ -1,21 +1,22 @@
-import React from "react";
-import { useMovie } from "../context/MovieContext";
+import { useEffect } from "react";
+import axios from "axios";
+import { useMovie } from "../../context/MovieContext";
 import { useNavigate } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import "../pages/Mainpage/Mainpage.scss";
+import "./Mainpage.scss";
 
 const API_IMG = "https://image.tmdb.org/t/p/w200";
 
-const Search = () => {
+const Mainpage = () => {
   const {
-    search,
-    setSearch,
-    searchedMovies,
+    movies,
+    setMovies,
+    handleSearch,
+    handleMainPage,
     handlePage,
-    handleSubmit,
     addToWatchLater,
     setSelectedMovie,
   } = useMovie();
@@ -28,27 +29,21 @@ const Search = () => {
     window.scrollTo(0, 0);
   };
 
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}`)
+      .then((res) => setMovies(res.data));
+  }, [setMovies]);
+
   return (
     <>
-      <form className="search" onSubmit={handleSubmit}>
-        <h2>Search</h2>
-        <input
-          placeholder="Search"
-          className="search__input"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button className="search__btn" onClick={handleSubmit}>
-          Search
-        </button>
-        {searchedMovies.results ? (
-          <p id="pages">{searchedMovies.total_results} results</p>
-        ) : null}
-      </form>
+      <div className="title">
+        <h2>Trending Movies</h2>
+      </div>
 
       <div className="container">
-        {searchedMovies.results
-          ? searchedMovies.results.map((movie) => {
+        {movies.results
+          ? movies.results.map((movie) => {
               return (
                 <div className="movie__item" key={movie.id}>
                   <div className="movie__card--left">
@@ -84,41 +79,44 @@ const Search = () => {
                       <div className="rating">
                         <img
                           className="rating__star"
-                          src={require("../assets/rating-star.svg").default}
+                          src={require("../../assets/rating-star.svg").default}
                           alt="Rating"
                         />
                         {movie.vote_average} / 10
                       </div>
                     </h4>
-                    <div
-                      className="movie__button"
-                      onClick={() => {
-                        addToWatchLater(movie);
-                      }}
-                    >
-                      <img
-                        className="watchlater"
-                        src={require("../assets/watch-later.svg").default}
-                        alt="Watch Later"
-                      />
-                      <h4>Watch Later</h4>
+                    <div>
+                      <div
+                        className="movie__button"
+                        onClick={() => {
+                          addToWatchLater(movie);
+                        }}
+                      >
+                        <img
+                          className="watchlater"
+                          src={require("../../assets/watch-later.svg").default}
+                          alt="Watch Later"
+                        />
+                        <h4>Watch Later</h4>
+                      </div>
                     </div>
                   </div>
                 </div>
               );
             })
           : null}
-
-        {search && searchedMovies.page ? (
+        {movies.page ? (
           <div className="footer">
-            <p id="pages">Page {searchedMovies.page}</p>
+            <p id="pages">Page {movies.page}</p>
             <button
               className="page__btn page__btn--left"
               onClick={() => {
-                if (searchedMovies.page > 1) {
-                  handlePage(searchedMovies.page - 1);
-                  window.scrollTo(0, 0);
+                if (!handleSearch && movies.page > 1) {
+                  handlePage(movies.page - 1);
+                } else {
+                  handleMainPage(movies.page - 1);
                 }
+                window.scrollTo(0, 0);
               }}
             >
               Previous Page
@@ -126,22 +124,24 @@ const Search = () => {
             <button
               className="page__btn"
               onClick={() => {
-                if (searchedMovies.page < searchedMovies.total_pages) {
-                  handlePage(searchedMovies.page + 1);
-                  window.scrollTo(0, 0);
+                if (!handleSearch && movies.page < movies.total_pages) {
+                  handlePage(movies.page + 1);
+                } else {
+                  handleMainPage(movies.page + 1);
                 }
+                window.scrollTo(0, 0);
               }}
             >
               Next Page
             </button>
           </div>
         ) : (
-          <p id="pages"></p>
+          <div className="loader"></div>
         )}
-        <ToastContainer autoClose={4000} pauseOnHover theme="colored" />
       </div>
+      <ToastContainer autoClose={4000} pauseOnHover theme="colored" />
     </>
   );
 };
 
-export default Search;
+export default Mainpage;

@@ -1,27 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import { useMovie } from "../context/MovieContext";
+import "./Navbar.scss";
 
 const Navbar = () => {
+  const { handleMainPage } = useMovie();
+
   return (
-    <div className="navbar">
-      <div className="logo">
-        <Link to="/">
-          <h2>Movies App</h2>
-        </Link>
+    <header>
+      <div className="container row">
+        <nav className="nav">
+          <ul className="nav__list">
+            <Link to="/">
+              <div className="logo" onClick={() => handleMainPage(1)}>
+                <h2>TMDb</h2>
+              </div>
+            </Link>
+          </ul>
+          <ul className="nav__list">
+            <Link to="/search">
+              <li className="nav__item">Search</li>
+            </Link>
+            <Link to="/watchlater">
+              <li className="nav__item">Watch Later</li>
+            </Link>
+            <Link to="/watched">
+              <li className="nav__item">Watched</li>
+            </Link>
+          </ul>
+        </nav>
       </div>
-      <ul>
-        <Link to="/search">
-          <li>Search</li>
-        </Link>
-        <Link to="/watchlater">
-          <li>Watch Later</li>
-        </Link>
-        <Link to="/watched">
-          <li>Watched</li>
-        </Link>
-      </ul>
-    </div>
+    </header>
   );
 };
 
