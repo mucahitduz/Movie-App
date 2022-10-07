@@ -86,24 +86,34 @@ const Watchlater = () => {
                     </span>
                   </h4>
                   <div className="movie__buttons">
-                    <button
-                      className="movie__btn movie__btn--left"
+                    <div
+                      className="movie__button"
                       onClick={() => {
                         removeFromWatchLater(movie);
                         remove();
                       }}
                     >
-                      Remove
-                    </button>
-                    <button
-                      className="movie__btn"
+                      <img
+                        className="watchlater"
+                        src={require("../assets/remove-button.svg").default}
+                        alt="Watch Later"
+                      />
+                      <h4>Remove</h4>
+                    </div>
+                    <div
+                      className="movie__button movie__button--right"
                       onClick={() => {
                         addToWatched(movie);
                         removeFromWatchLater(movie);
                       }}
                     >
-                      Watched
-                    </button>
+                      <img
+                        className="watchlater"
+                        src={require("../assets/watched-icon.svg").default}
+                        alt="Watch Later"
+                      />
+                      <h4>Watched</h4>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -83,14 +83,19 @@ const Watched = () => {
                     </span>
                   </h4>
                   <div className="movie__buttons">
-                    <button
-                      className="movie__btn movie__btn--left"
+                    <div
+                      className="movie__button"
                       onClick={() => {
                         removeFromWatched(movie);
                       }}
                     >
-                      Remove
-                    </button>
+                      <img
+                        className="watchlater"
+                        src={require("../assets/remove-button.svg").default}
+                        alt="Watch Later"
+                      />
+                      <h4>Remove</h4>
+                    </div>
                   </div>
                 </div>
               </div>

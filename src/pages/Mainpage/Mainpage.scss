@@ -207,27 +207,21 @@ body {
 
 //Watchlater Component
 
-.movie__btn {
-  cursor: pointer;
-  font-family: "Roboto";
-  font-weight: 700;
-  padding: .6em;
-  margin-bottom: 1rem;
-  width: 45%;
-  max-width: 270px;
-  border: 2px solid #1A1A1A;
-  background-color: transparent;
-  color: #3B3B3B;
-  outline: none;
+.movie__buttons {
+  // display: flex;
 
-  &:hover {
-    color: #fff;
-    background-color: #1A1A1A;
+  .movie__button--right {
+    margin-left: .7rem
   }
 
-  &--left {
-    margin-right: 0.2rem;
+  @media(min-width:600px) {
+    display: flex;    
+  }
+
+  @media(max-width:600px) {
+    .movie__button--right {
+        margin-left: 0;
+        margin-top: .3rem
+      }
   }
 }
-
-//Watched Components
