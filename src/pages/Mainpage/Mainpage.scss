@@ -124,16 +124,22 @@ body {
 
 .movie__button {
   display: flex;
-  cursor: pointer;
+  cursor: pointer;  
 
   h4 {
     align-self: center;
-    margin-left: .4rem;
+    margin-left: .4rem;    
   }
 
   &:hover {
     scale: 1.03;
     color: gray;
+  }
+
+  @media(max-width:400px) {
+    h4 {
+      font-size: .9rem;
+    }
   }
 }
 
